@@ -31,9 +31,23 @@ def calculate_stats(character_class, level):
     - Rogues: Medium strength, medium magic, low health
     - Clerics: Medium strength, high magic, high health
     """
-    # TODO: Implement this function
-    # Return a tuple: (strength, magic, health)
-    pass
+    if character_class == "Warrior":
+        strength = 10 + (level * 3)
+        magic = 2 + (level * 1)
+        health = 100 + (level * 10)
+    elif character_class == "Mage":
+        strength = 3 + (level * 1)
+        magic = 15 + (level * 4)
+        health = 70 + (level * 5)
+    elif character_class == "Rogue":
+        strength = 7 + (level * 2)
+        magic = 7 + (level * 2)
+        health = 60 + (level * 4)
+    elif character_class == "Cleric":
+        strength = 6 + (level * 2)
+        magic = 12 + (level * 3)
+        health = 90 + (level * 7)
+    return (strength, magic, health)
 
 def save_character(character, filename):
     """
