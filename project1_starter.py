@@ -73,18 +73,21 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    # TODO: Implement this function
-    # Remember to handle file errors gracefully
-    pass
+    with open(filename, 'w') as character_save:
+        character_save.write(f"Character Name: {character['name']}\n")
+        character_save.write(f"Class: {character['class']}\n")
+        character_save.write(f"Level: {character['level']}\n")
+        character_save.write(f"Strength: {character['strength']}\n")
+        character_save.write(f"Magic: {character['magic']}\n")
+        character_save.write(f"Health: {character['health']}\n")
+        character_save.write(f"Gold: {character['gold']}\n")
+    return True
 
 def load_character(filename):
     """
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
-    # TODO: Implement this function
-    # Remember to handle file not found errors
-    pass
 
 def display_character(character):
     """
