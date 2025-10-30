@@ -146,3 +146,4 @@ if __name__ == "__main__":
     # display_character(char)
     # save_character(char, "my_character.txt")
     # loaded = load_character("my_character.txt")
+
