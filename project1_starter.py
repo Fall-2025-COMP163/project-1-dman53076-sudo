@@ -57,6 +57,10 @@ def calculate_stats(character_class, level):
         strength = 6 + (level * 2)
         magic = 12 + (level * 3)
         health = 90 + (level * 7)
+    else:
+        strength = 5 + (level * 2)
+        magic = 5 + (level * 2)
+        health = 80 + (level * 5)
     return (strength, magic, health)
 
 def save_character(character, filename):
@@ -73,6 +77,8 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
+    if not character or not filename:
+        return False
     with open(filename, 'w') as character_save:
         character_save.write(f"Character Name: {character['name']}\n")
         character_save.write(f"Class: {character['class']}\n")
@@ -88,6 +94,8 @@ def load_character(filename):
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
+    if not filename:
+        return None
     with open(filename, 'r') as character_load:
         lines = character_load.readlines()
         character = {}
@@ -138,12 +146,9 @@ def level_up(character):
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
-    print("=== CHARACTER CREATOR ===")
-    print("Test your functions here!")
-    
-    # Example usage:
-    # char = create_character("TestHero", "Warrior")
-    # display_character(char)
-    # save_character(char, "my_character.txt")
-    # loaded = load_character("my_character.txt")
+    print("=== CHARACTER CREATOR===")
 
+    char = create_character("Aria", "Mage")
+    display_character(char)
+
+    print("\nSaving character...")
