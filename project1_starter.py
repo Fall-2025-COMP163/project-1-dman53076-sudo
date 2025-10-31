@@ -79,22 +79,23 @@ def save_character(character, filename):
     """
     if not character or not filename:
         return False
-    with open(filename, 'w') as character_save:
-        character_save.write(f"Character Name: {character['name']}\n")
-        character_save.write(f"Class: {character['class']}\n")
-        character_save.write(f"Level: {character['level']}\n")
-        character_save.write(f"Strength: {character['strength']}\n")
-        character_save.write(f"Magic: {character['magic']}\n")
-        character_save.write(f"Health: {character['health']}\n")
-        character_save.write(f"Gold: {character['gold']}\n")
-    return True
+    else:
+        with open(filename, 'w') as character_save:
+            character_save.write(f"Character Name: {character['name']}\n")
+            character_save.write(f"Class: {character['class']}\n")
+            character_save.write(f"Level: {character['level']}\n")
+            character_save.write(f"Strength: {character['strength']}\n")
+            character_save.write(f"Magic: {character['magic']}\n")
+            character_save.write(f"Health: {character['health']}\n")
+            character_save.write(f"Gold: {character['gold']}\n")
+        return True
 
 def load_character(filename):
     """
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
-    if not filename:
+    if filename == " ":
         return None
     with open(filename, 'r') as character_load:
         lines = character_load.readlines()
@@ -146,9 +147,11 @@ def level_up(character):
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
-    print("=== CHARACTER CREATOR===")
-
-    char = create_character("Aria", "Mage")
-    display_character(char)
-
-    print("\nSaving character...")
+    # Example usage
+    my_char = create_character("Aria", "Mage")
+    display_character(my_char)
+    save_character(my_char, "aria_save.txt")
+    loaded_char = load_character("aria_save.txt")
+    display_character(loaded_char)
+    level_up(loaded_char)
+    display_character(loaded_char)
