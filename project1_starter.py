@@ -77,7 +77,7 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    if not character or not filename:
+    if filename == " ":
         return False
     else:
         with open(filename, 'w') as character_save:
@@ -95,8 +95,10 @@ def load_character(filename):
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
-    if filename == " ":
+    import os
+    if not os.path.exists(filename):
         return None
+    
     with open(filename, 'r') as character_load:
         lines = character_load.readlines()
         character = {}
