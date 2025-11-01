@@ -6,6 +6,7 @@ Date: 2024-10-26
 AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
 """
+import os
 
 def create_character(name, character_class):
     """
@@ -77,25 +78,6 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    if filename == " ":
-        return False
-    else:
-        with open(filename, 'w') as character_save:
-            character_save.write(f"Character Name: {character['name']}\n")
-            character_save.write(f"Class: {character['class']}\n")
-            character_save.write(f"Level: {character['level']}\n")
-            character_save.write(f"Strength: {character['strength']}\n")
-            character_save.write(f"Magic: {character['magic']}\n")
-            character_save.write(f"Health: {character['health']}\n")
-            character_save.write(f"Gold: {character['gold']}\n")
-        return True
-
-def load_character(filename):
-    """
-    Loads character from text file
-    Returns: character dictionary if successful, None if file not found
-    """
-    import os
     
     if not character or not filename:
         return False
@@ -103,6 +85,26 @@ def load_character(filename):
     # Check if the directory exists
     directory = os.path.dirname(filename)
     if directory and not os.path.exists(directory):
+        return False
+
+
+    with open(filename, 'w') as character_save:
+        character_save.write(f"Character Name: {character['name']}\n")
+        character_save.write(f"Class: {character['class']}\n")
+        character_save.write(f"Level: {character['level']}\n")
+        character_save.write(f"Strength: {character['strength']}\n")
+        character_save.write(f"Magic: {character['magic']}\n")
+        character_save.write(f"Health: {character['health']}\n")
+        character_save.write(f"Gold: {character['gold']}\n")
+        return True
+
+def load_character(filename):
+    """
+    Loads character from text file
+    Returns: character dictionary if successful, None if file not found
+    """
+    
+    if not os.path.exists(filename):
         return False
     
     with open(filename, 'r') as character_load:
