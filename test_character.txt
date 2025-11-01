@@ -1,7 +1,0 @@
-Character Name: TestHero
-Class: Rogue
-Level: 1
-Strength: 9
-Magic: 9
-Health: 64
-Gold: 100

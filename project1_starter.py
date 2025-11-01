@@ -96,20 +96,26 @@ def load_character(filename):
     Returns: character dictionary if successful, None if file not found
     """
     import os
-    if not os.path.exists(filename):
-        return None
-    else:
-        with open(filename, 'r') as character_load:
-            lines = character_load.readlines()
-            character = {}
-            character['name'] = lines[0].strip().split(": ")[1]
-            character['class'] = lines[1].strip().split(": ")[1]
-            character['level'] = int(lines[2].strip().split(": ")[1])
-            character['strength'] = int(lines[3].strip().split(": ")[1])
-            character['magic'] = int(lines[4].strip().split(": ")[1])
-            character['health'] = int(lines[5].strip().split(": ")[1])
-            character['gold'] = int(lines[6].strip().split(": ")[1])
-        return character
+    
+    if not character or not filename:
+        return False
+
+    # Check if the directory exists
+    directory = os.path.dirname(filename)
+    if directory and not os.path.exists(directory):
+        return False
+    
+    with open(filename, 'r') as character_load:
+        lines = character_load.readlines()
+        character = {}
+        character['name'] = lines[0].strip().split(": ")[1]
+        character['class'] = lines[1].strip().split(": ")[1]
+        character['level'] = int(lines[2].strip().split(": ")[1])
+        character['strength'] = int(lines[3].strip().split(": ")[1])
+        character['magic'] = int(lines[4].strip().split(": ")[1])
+        character['health'] = int(lines[5].strip().split(": ")[1])
+        character['gold'] = int(lines[6].strip().split(": ")[1])      
+    return character
 
 def display_character(character):
     """
@@ -156,4 +162,8 @@ if __name__ == "__main__":
     loaded_char = load_character("aria_save.txt")
     display_character(loaded_char)
     level_up(loaded_char)
+    display_character(loaded_char)
+    save_character(loaded_char, "aria_save.txt")
+    test_char = load_character("test_character.txt")
+    display_character(test_char)
     display_character(loaded_char)
